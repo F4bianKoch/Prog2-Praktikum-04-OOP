@@ -34,33 +34,40 @@ public class Coffee extends CanteenProduct {
 
    @Override
    public boolean equals(Object other) {
-        if (!super.equals(other))
-            return false;
-        
-        // special comparisons for the CanteenProduct class
-        Coffee otherCoffee = (Coffee) other;
+       if (!super.equals(other))
+           return false;
+       
+       // special comparisons for the CanteenProduct class
+       Coffee otherCoffee = (Coffee) other;
 
-        if (!this.getName().equals(otherCoffee.getName()))
-            return false;
-        if (!Objects.equals(this.getBaseProduct(), otherCoffee.getBaseProduct()))
-            return false;
-        if (!(this.getIngredients().length == otherCoffee.getIngredients().length))
-            return false; 
-        for (int i = 0; i < this.getIngredients().length; i++) {
-            if (!(this.getIngredients()[i] == otherCoffee.getIngredients()[i]))
-                return false;
-        }
+       if (!this.getName().equals(otherCoffee.getName()))
+           return false;
+       if (!Objects.equals(this.getBaseProduct(), otherCoffee.getBaseProduct()))
+           return false;
+       if (!(this.getIngredients().length == otherCoffee.getIngredients().length))
+           return false; 
+       for (int i = 0; i < this.getIngredients().length; i++) {
+           if (!(this.getIngredients()[i] == otherCoffee.getIngredients()[i]))
+               return false;
+       }
         
-        return true;
+       return true;
    }
 
    @Override
    public int hashCode() {
-
+       final int prime = 31;
+       int result = super.hashCode();
+       int ingredienthash = 0;
+       for (CoffeeIngredients ingredient : ingredients) {
+           ingredienthash = ingredienthash + ingredient.hashCode();
+       }
+       result = prime * result + ingredienthash;
+       return result;
    }
 
    @Override
    public String toString() {
-
+       return this.getName() + "\t\t\t\t" + this.getPrice();
    }
 }
