@@ -14,7 +14,8 @@ public class MainCanteen {
         for (CanteenProduct product : products) {
             if (product instanceof Ratable) {
                 Ratable ratableProduct = (Ratable) product;
-                ratableProduct.rateProduct((int) (Math.random() * (5 - 1)) + 1);
+                for (int i = 0; i < 20; i++)
+                    ratableProduct.rateProduct((int) (Math.random() * (5 - 1)) + 1);
             }
         }
 
