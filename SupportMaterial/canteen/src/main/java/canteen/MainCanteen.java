@@ -10,6 +10,33 @@ public class MainCanteen {
         products.addAll(getSandwiches());
         printCoffee(products);
         printSandwiches(products);
+
+        for (CanteenProduct product : products) {
+            if (product instanceof Ratable) {
+                Ratable ratableProduct = (Ratable) product;
+                ratableProduct.rateProduct((int) (Math.random() * (5 - 1)) + 1);
+            }
+        }
+
+        System.out.println("Durchschnittsbewertung aller einzelnen Duchschnitte: " + computeAvgRatings(products));
+    }
+
+    public static double computeAvgRatings(List<CanteenProduct> products) {
+        int numberOfRatedProducts = 0;
+        double avgRatingSum = 0.0;
+
+        for (CanteenProduct product : products) {
+            if (product instanceof Ratable) {
+                Ratable ratableProduct = (Ratable) product;
+                avgRatingSum = avgRatingSum + ratableProduct.getAvgRating();
+                numberOfRatedProducts++;
+            }
+        }
+
+        if (numberOfRatedProducts != 0)
+            return avgRatingSum / numberOfRatedProducts;
+
+        return 0;
     }
 
     public static List<CanteenProduct> getSandwiches(){
