@@ -9,9 +9,9 @@ public enum SandwichIngredients {
     HAM(0.5, 46),
     CHICKEN(0.5, 55),
     BEEF(1.0, 70),
-    VEGAN_MEET_REPLACEMETN(1.0, 117),
+    VEGAN_MEET_REPLACEMENT(1.0, 117),
     CHEDDAR(0.5, 113),
-    MOZERELLA(0.5, 35),
+    MOZARELLA(0.5, 35),
     EMMENTAL(1.0, 120),
     CREAM_CHEESE(0.5, 100),
     TOMATO(0.2, 7),
@@ -51,7 +51,7 @@ public enum SandwichIngredients {
      * 
      * @return kcal
      */
-    public int getKca() {
+    public int getKcal() {
         return kcal;
     }
 

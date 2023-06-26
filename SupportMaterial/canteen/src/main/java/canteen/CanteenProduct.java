@@ -12,7 +12,7 @@ public abstract class CanteenProduct {
     public CanteenProduct(String name, CanteenProduct baseProduct) {
         // validate name
         if (name != null && name.trim().length() >= 3)
-            this.name = name;
+            this.name = name.trim();
         else
             throw new IllegalArgumentException("name needs to be at least 3 characters long!");
 
