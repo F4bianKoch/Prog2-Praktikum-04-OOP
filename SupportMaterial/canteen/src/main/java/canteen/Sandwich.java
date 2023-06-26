@@ -1,12 +1,15 @@
 package canteen;
 
+import java.security.cert.PKIXCertPathBuilderResult;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Arrays;
 
-public class Sandwich extends CanteenProduct{
+public class Sandwich extends CanteenProduct implements Ratable{
     private final SandwichIngredients[] ingredients;
+    private int ratingSum;
+    private int numberOfRatings;
 
     public Sandwich(String name, SandwichIngredients... ingredients) {
         super(name);
@@ -26,6 +29,8 @@ public class Sandwich extends CanteenProduct{
             throw new SandwichHasTooFewIngredientsException("Sandwich must have at least to ingredients!");
 
         this.ingredients = ingredients;
+        this.ratingSum = 0;
+        this.numberOfRatings = 0;
     }
 
     public SandwichIngredients[] getIngredients() {
@@ -90,6 +95,25 @@ public class Sandwich extends CanteenProduct{
     @Override
     public String toString() {
        return this.getName() + "(" + this.getKcal() + "kcal)\t\t\t\t" + this.getPrice();
+    }
+
+    @Override
+    public void rateProduct(int rating) {
+        if (rating > 5 || rating < 1) 
+            throw new IllegalArgumentException("rating must be between 1 and 5 included!");
+        
+        this.ratingSum = this.ratingSum + rating;
+        numberOfRatings++;
+    }
+
+    @Override
+    public double getAvgRating() {
+        return this.ratingSum / getNumberOfRatings();
+    }
+
+    @Override
+    public int getNumberOfRatings() {
+        return numberOfRatings;
     }
 
     private LinkedList<SandwichIngredients> getFourMostExpensive() {
