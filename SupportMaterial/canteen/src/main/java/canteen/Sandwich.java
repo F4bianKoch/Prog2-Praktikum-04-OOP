@@ -26,7 +26,7 @@ public class Sandwich extends CanteenProduct implements Ratable{
             throw new SandwichHasNoBreadException("Sandwich must have at least one Bread Type!");
         
         if (ingredients.length < 2)
-            throw new SandwichHasTooFewIngredientsException("Sandwich must have at least to ingredients!");
+            throw new SandwichHasTooFewIngredientsException("Sandwich must have at least two ingredients!");
 
         this.ingredients = ingredients;
         this.ratingSum = 0;
